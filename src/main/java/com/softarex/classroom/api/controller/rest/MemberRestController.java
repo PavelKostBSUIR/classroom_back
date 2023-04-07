@@ -20,7 +20,7 @@ import java.util.List;
 public class MemberRestController {
 
     public static final String MEMBERS_ENDPOINT = "/api/members";
-    public static final String MEMBER_ENDPOINT = "{member_id}";
+    public static final String MEMBER_ENDPOINT = "/member";
     MemberService memberService;
 
     @PostMapping
@@ -34,7 +34,7 @@ public class MemberRestController {
         return memberService.getAll();
     }
 
-    @GetMapping
+    @GetMapping(MEMBER_ENDPOINT)
     public GetMemberDto getByName(@RequestParam("name") String name) {
         return memberService.getByName(name);
     }
