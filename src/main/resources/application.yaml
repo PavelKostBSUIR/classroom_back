@@ -4,9 +4,9 @@ spring:
   jpa:
     show-sql: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
   datasource:
-    url: jdbc:mysql://localhost:3307/classroom
+    url: jdbc:mysql://localhost:3306/classroom
     username: root
-    password: root
+    password:
     driverClassName: com.mysql.cj.jdbc.Driver

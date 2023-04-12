@@ -5,11 +5,13 @@ import com.softarex.classroom.api.dto.GetMemberDto;
 import com.softarex.classroom.api.entity.Member;
 import com.softarex.classroom.api.mapper.MemberMapper;
 import com.softarex.classroom.api.repo.MemberRepository;
+import com.softarex.classroom.api.repo.TokenRepository;
 import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,13 +26,14 @@ public class MemberService {
     MemberMapper memberMapper;
 
     MemberRepository memberRepository;
+    TokenRepository tokenRepository;
 
     @Transactional
-    public void toggleHand(Long id) {
-        Member member = memberRepository.getReferenceById(id);
+    public void toggleHand(String name) {
+        Member member = memberRepository.findByName(name).orElseThrow(() -> new BadCredentialsException("user not found"));
         member.setHandRaised(!member.getHandRaised());
         memberRepository.save(member);
-        log.info(String.format("Member \"%s\" toggled hand.", id));
+        log.info(String.format("Member \"%s\" toggled hand.", name));
     }
 
     @Transactional
@@ -45,6 +48,7 @@ public class MemberService {
 
     @Transactional
     public List<GetMemberDto> getAll() {
-        return memberRepository.findAll().stream().map(memberMapper::memberToGetMemberDto).collect(Collectors.toList());
+        return memberRepository.findAll().stream().filter((member -> tokenRepository.findByMember_IdAndRevokedFalseAndExpiredFalse(member.getId()).size() != 0)).
+                map(memberMapper::memberToGetMemberDto).collect(Collectors.toList());
     }
 }

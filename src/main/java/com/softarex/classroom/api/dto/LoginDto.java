@@ -5,8 +5,9 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ToggleHandDto {
+@NoArgsConstructor
+public class LoginDto {
     String message;
 }
