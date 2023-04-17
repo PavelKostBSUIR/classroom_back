@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
-@Log4j2
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RestController
 @RequestMapping
 public class MemberRestController {
@@ -30,10 +28,9 @@ public class MemberRestController {
     public static final String MEMBER_ENDPOINT = "api/member";
     public static final String FETCH_CLASSROOM_MEMBERS_TOGGLE_HAND_EVENT = "classroom.members.toggle.hand.event";
 
-    MemberService memberService;
-    SimpMessagingTemplate simpMessagingTemplate;
+    private final MemberService memberService;
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
-    //@SendTo("/topic/" + FETCH_CLASSROOM_MEMBERS_TOGGLE_HAND_EVENT)
     @PatchMapping(MEMBER_ENDPOINT)
     public ToggleHandDto toggleHand(Principal principal) {
         memberService.toggleHand(principal.getName());

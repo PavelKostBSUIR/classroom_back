@@ -24,7 +24,6 @@ public class SecurityConfig {
 
     JwtAuthenticationFilter jwtAuthFilter;
     LogoutHandler logoutHandler;
-   // CorsFilter corsFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,8 +35,7 @@ public class SecurityConfig {
                 sessionManagement().
                 sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().
-                //authenticationProvider(authenticationProvider).
-                        addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).
+                addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).
                 logout().
                 logoutUrl("/api/auth/logout").
                 addLogoutHandler(logoutHandler).

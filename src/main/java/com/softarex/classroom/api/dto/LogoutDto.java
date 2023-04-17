@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Builder
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class LogoutDto {
-    String message;
+    private final String message;
 }

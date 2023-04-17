@@ -19,14 +19,12 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Service
 public class MemberService {
 
-    MemberMapper memberMapper;
-
-    MemberRepository memberRepository;
-    TokenRepository tokenRepository;
+    private final MemberMapper memberMapper;
+    private final MemberRepository memberRepository;
+    private final TokenRepository tokenRepository;
 
     @Transactional
     public void toggleHand(String name) {
@@ -34,11 +32,6 @@ public class MemberService {
         member.setHandRaised(!member.getHandRaised());
         memberRepository.save(member);
         log.info(String.format("Member \"%s\" toggled hand.", name));
-    }
-
-    @Transactional
-    public void create(CreateMemberDto createMemberDto) {
-        memberRepository.save(memberMapper.createMemberDtoToMember(createMemberDto));
     }
 
     @Transactional

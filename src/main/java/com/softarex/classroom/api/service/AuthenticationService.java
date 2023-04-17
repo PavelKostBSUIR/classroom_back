@@ -17,11 +17,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthenticationService {
-    MemberRepository repository;
-    TokenRepository tokenRepository;
-    JwtService jwtService;
+    private final MemberRepository repository;
+    private final TokenRepository tokenRepository;
+    private final JwtService jwtService;
 
     public AuthenticationResponse register(RegisterRequest request) {
         var member = Member.builder().name(request.getName())

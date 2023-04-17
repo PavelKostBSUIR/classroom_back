@@ -12,12 +12,11 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @EnableWebSocketMessageBroker
 @Configuration
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    AuthChannelInterceptor authChannelInterceptor;
+    private final AuthChannelInterceptor authChannelInterceptor;
     public static final String REGISTRY = "/ws";
     public static final String TOPIC_DESTINATION_PREFIX = "/topic";
     public static final String APP_DESTINATION_PREFIX = "/app";

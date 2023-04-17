@@ -16,11 +16,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class LogoutService implements LogoutHandler {
 
-    TokenRepository tokenRepository;
-    SimpMessagingTemplate simpMessagingTemplate;
+    private final TokenRepository tokenRepository;
+    private final SimpMessagingTemplate simpMessagingTemplate;
     public static final String FETCH_CLASSROOM_MEMBERS_LOGOUT_EVENT = "classroom.members.logout.event";
 
     @Override

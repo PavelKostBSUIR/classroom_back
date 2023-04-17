@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Data
 @Builder
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CreateMemberDto implements Serializable {
-    String name;
+    private final String name;
 }

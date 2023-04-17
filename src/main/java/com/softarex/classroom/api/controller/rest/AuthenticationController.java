@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthenticationController {
-    AuthenticationService service;
-    SimpMessagingTemplate simpMessagingTemplate;
+    private final AuthenticationService service;
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
     public static final String FETCH_CLASSROOM_MEMBERS_LOGIN_EVENT = "classroom.members.login.event";
 

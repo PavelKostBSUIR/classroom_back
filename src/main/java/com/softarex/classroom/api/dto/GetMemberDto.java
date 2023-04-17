@@ -11,9 +11,8 @@ import java.io.Serializable;
 @Data
 @Builder
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class GetMemberDto implements Serializable {
-    Long id;
-    String name;
-    Boolean handRaised;
+    private final Long id;
+    private final String name;
+    private final Boolean handRaised;
 }

@@ -19,11 +19,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthChannelInterceptor implements ChannelInterceptor {
-    JwtService jwtService;
-    UserDetailsService userDetailsService;
-    TokenRepository tokenRepository;
+    private final JwtService jwtService;
+    private final UserDetailsService userDetailsService;
+    private final TokenRepository tokenRepository;
     private static final String TOKEN_HEADER = "token";
 
     // Processes a message before sending it
@@ -55,7 +54,7 @@ public class AuthChannelInterceptor implements ChannelInterceptor {
 //                    authToken.setDetails(
 //                            new WebAuthenticationDetailsSource().buildDetails(request)
 //                    );
-                  //  SecurityContextHolder.getContext().setAuthentication(authToken);// can be used if accessor set user will not work
+                    //  SecurityContextHolder.getContext().setAuthentication(authToken);// can be used if accessor set user will not work
                 }
             }
         }

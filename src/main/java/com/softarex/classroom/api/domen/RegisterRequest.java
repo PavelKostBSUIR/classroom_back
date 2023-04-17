@@ -7,7 +7,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RegisterRequest {
-    String name;
+    private  String name;
 }
