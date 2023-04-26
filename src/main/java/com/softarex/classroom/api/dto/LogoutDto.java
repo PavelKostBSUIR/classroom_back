@@ -6,11 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
-
 @Data
 @Builder
 @AllArgsConstructor
-public class CreateMemberDto implements Serializable {
-    private final String name;
+public class LogoutDto {
+    private final String message;
 }

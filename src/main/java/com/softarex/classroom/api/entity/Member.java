@@ -4,6 +4,7 @@ import com.softarex.classroom.enum_.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,24 +13,20 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Member implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+public class Member extends Common implements UserDetails {
 
     @Column(unique = true)
-    String name;
+    private String name;
 
     @Enumerated(EnumType.STRING)
-    Role role;
+    private Role role;
 
     @Builder.Default
-    Boolean handRaised = false;
+    private Boolean handRaised = false;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

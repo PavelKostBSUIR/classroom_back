@@ -6,6 +6,6 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Builder
 @AllArgsConstructor
-public class ToggleHandDto {
+public class LoginDto {
     private final String message;
 }

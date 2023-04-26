@@ -4,29 +4,26 @@ import com.softarex.classroom.enum_.TokenType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Token {
+public class Token extends Common {
 
-    @Id
-    @GeneratedValue
-    Integer id;
 
     @Column(unique = true)
-    String token;
+    private String token;
 
     @Enumerated(EnumType.STRING)
-    TokenType tokenType = TokenType.BEARER;
+    private TokenType tokenType = TokenType.BEARER;
 
-    boolean revoked;
+    private boolean revoked;
 
-    boolean expired;
+    private boolean expired;
 
     @ManyToOne
-    Member member;
+    private Member member;
 }

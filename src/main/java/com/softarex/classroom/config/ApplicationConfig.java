@@ -16,10 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ApplicationConfig {
 
-    MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
